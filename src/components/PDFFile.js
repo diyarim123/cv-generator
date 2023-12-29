@@ -27,31 +27,35 @@ export default function PDFFile({
       backgroundColor: "#fff",
       color: color_data
     },
-    section: {
-      margin: 6,
-      padding: 35,
-      flexGrow: 1,
+    container: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap' ,
+      marginHorizontal: 10
     },
     leftColumn: {
       width: "40%",
       display: "flex",
       flexDirection: "column",
-      backgroundColor: "#E4E4E4",
+      backgroundColor: "#0939E7",
+      color: "#fff"
     },
     rightColumn: {
       width: "60%",
     },
     header: {
-      margin: 16,
+      margin: 10,
       fontSize: 12,
     },
     title: {
       margin: 16,
-      fontSize: 20,
+      fontSize: 22,
       fontWeight: "bold",
     },
     subTitle: {
-      margin: 16,
+      marginHorizontal: 16,
+      marginTop: 6,
+      marginBottom: 18,
       fontSize: 18,
       fontWeight: "semibold",
     },
@@ -64,14 +68,18 @@ export default function PDFFile({
       fontStyle: "italic",
     },
     text: {
-      margin: 14,
+      marginVertical: 12,
+      marginHorizontal: 6,
       fontSize: 8,
       textAlign: "justify",
+      lineHeight: 0
     },
     link: {
-      margin: 14,
+      marginVertical: 12,
+      marginHorizontal: 6,
       fontSize: 8,
       textAlign: "justify",
+      color: "#fff"
     },
     image: {
       width: "70%",
@@ -81,6 +89,7 @@ export default function PDFFile({
       objectFit: "cover",
       margin: "auto",
       marginTop: 6,
+      marginBottom: 10,
     },
   });
 
@@ -90,49 +99,63 @@ export default function PDFFile({
         {/* Left column */}
         <View style={styles.leftColumn}>
           <Image src={personal_data.photo} style={styles.image} />
+
           <Text style={styles.header}>Personal Info</Text>
-          <Text
-            style={styles.text}
-          >{`${personal_data.city}, ${personal_data.country}`}</Text>
-          <Text style={styles.text}>{personal_data.street}</Text>
-          <Text style={styles.text}>{`${personal_data.mobile}`}</Text>
-          <Text style={styles.text}>{personal_data.email}</Text>
-          <Link style={styles.link} src={personal_data.linkedin}>
-            Linked In
-          </Link>
-          <Link style={styles.link} src={personal_data.github}>
-            Github
-          </Link>
+          <View style={styles.container}>
+            <Text
+              style={styles.text}
+            >{`${personal_data.city}, ${personal_data.country}`}</Text>
+            <Text style={styles.text}>{personal_data.street}</Text>
+            <Text style={styles.text}>{`${personal_data.mobile}`}</Text>
+            <Text style={styles.text}>{personal_data.email}</Text>
+            <Link style={styles.link} src={personal_data.linkedin}>
+              Linked In
+            </Link>
+            <Link style={styles.link} src={personal_data.github}>
+              Github
+            </Link>
+          </View>
 
           <Text style={styles.header}>Skills</Text>
-          {personal_data.skills.length > 0 &&
-            personal_data.skills.map((value, index) => (
-              <Text key={index} style={styles.text}>
-                {value}
-              </Text>
-            ))}
+          <View style={styles.container}>
+            {personal_data.skills.length > 0 &&
+              personal_data.skills.map((value, index) => (
+                <Text key={index} style={styles.text}>
+                  {value}
+                </Text>
+              ))}
+          </View>
 
           <Text style={styles.header}>Languages</Text>
-          {miscellaneous_data.languages.length > 0 &&
-            miscellaneous_data.languages.map((value, index) => (
-              <Text key={index} style={styles.text}>
-                {value}
-              </Text>
-            ))}
+          <View style={styles.container}>
+            {miscellaneous_data.languages.length > 0 &&
+              miscellaneous_data.languages.map((value, index) => (
+                <Text key={index} style={styles.text}>
+                  {value}
+                </Text>
+              ))}
+          </View>
+
           <Text style={styles.header}>Achievements</Text>
-          {miscellaneous_data.achievements.length > 0 &&
-            miscellaneous_data.achievements.map((value, index) => (
-              <Text key={index} style={styles.text}>
-                {value}
-              </Text>
-            ))}
+          <View style={styles.container}>
+            {miscellaneous_data.achievements.length > 0 &&
+              miscellaneous_data.achievements.map((value, index) => (
+                <Text key={index} style={styles.text}>
+                  {value}
+                </Text>
+              ))}
+          </View>
+
           <Text style={styles.header}>Certificates</Text>
-          {miscellaneous_data.certificates.length > 0 &&
-            miscellaneous_data.certificates.map((value, index) => (
-              <Text key={index} style={styles.text}>
-                {value}
-              </Text>
-            ))}
+          <View style={styles.container}>
+            {miscellaneous_data.certificates.length > 0 &&
+              miscellaneous_data.certificates.map((value, index) => (
+                <Text key={index} style={styles.text}>
+                  {value}
+                </Text>
+              ))}
+          </View>
+
         </View>
 
         {/* Right Column */}
@@ -141,59 +164,65 @@ export default function PDFFile({
           <Text style={styles.subTitle}>{personal_data.position}</Text>
 
           <Text style={styles.subTitle}>Experience</Text>
-          <Text style={styles.header}>{experience_data.organization}</Text>
-          <Text style={styles.text}>{experience_data.position}</Text>
-          <Text
-            style={styles.text}
-          >{`(${experience_data.duration[0]} - ${experience_data.duration[1]})`}</Text>
-          <Text style={styles.text}>{experience_data.description}</Text>
-          {experience_data.experiences.length > 0 &&
-            experience_data.experiences.map((values, index) => (
-              <div>
-                <Text style={styles.header}>{values.organization}</Text>
-                <Text style={styles.text}>{values.position}</Text>
-                <Text
-                  style={styles.text}
-                >{`(${values.duration[0]} - ${values.duration[1]})`}</Text>
-                <Text style={styles.text}>{values.description}</Text>
-              </div>
-            ))}
+          <View style={styles.container}>
+            <Text style={styles.header}>{experience_data.organization} - </Text>
+            <Text style={{fontSize: 8, marginHorizontal: 4, marginVertical: 12}}>{experience_data.position}</Text>
+            <Text
+              style={styles.text}
+            >{`(${experience_data.duration[0]} - ${experience_data.duration[1]})`}</Text>
+            <Text style={styles.text}>{experience_data.description}</Text>
+            {experience_data.experiences.length > 0 &&
+              experience_data.experiences.map((values, index) => (
+                <div>
+                  <Text style={{width: '100%',margin: 10, fontSize: 12}}>{values.organization} - </Text>
+                  <Text style={styles.text}>{values.position}</Text>
+                  <Text
+                    style={styles.text}
+                  >{`(${values.duration[0]} - ${values.duration[1]})`}</Text>
+                  <Text style={styles.text}>{values.description}</Text>
+                </div>
+              ))}
+          </View>
 
           <Text style={styles.subTitle}>Projects</Text>
-          <Text style={styles.header}>{project_data.title}</Text>
-          <Link style={styles.link} src={project_data.link}>
-            Demo
-          </Link>
-          <Text style={styles.text}>{project_data.description}</Text>
-          {project_data.projects.length > 0 &&
-            project_data.projects.map((value, index) => (
-              <div>
-                <Text style={styles.header}>{value.title}</Text>
-                <Link style={styles.link} src={value.link}>
-                  Demo
-                </Link>
-                <Text style={styles.text}>{value.description}</Text>
-              </div>
-            ))}
+          <View style={styles.container}>
+            <Text style={{width: '100%',margin: 10, fontSize: 12}}>{project_data.title}</Text>
+            <Link style={{marginVertical: 12, marginHorizontal: 6, fontSize: 8, textAlign: "justify"}} src={project_data.link}>
+              Demo - 
+            </Link>
+            <Text style={styles.text}>{project_data.description}</Text>
+            {project_data.projects.length > 0 &&
+              project_data.projects.map((value, index) => (
+                <div>
+                  <Text style={styles.header}>{value.title}</Text>
+                  <Link style={{marginVertical: 12, marginHorizontal: 6, fontSize: 8, textAlign: "justify"}} src={value.link}>
+                    Demo -
+                  </Link>
+                  <Text style={styles.text}>{value.description}</Text>
+                </div>
+              ))}
+          </View>
 
           <Text style={styles.subTitle}>Education</Text>
-          <Text style={styles.header}>{education_data.college}</Text>
-          <Text style={styles.text}>{education_data.qualification}</Text>
-          <Text
-            style={styles.text}
-          >{`(${education_data.year[0]} - ${education_data.year[1]})`}</Text>
-          <Text style={styles.text}>{education_data.description}</Text>
-          {education_data.educations.length > 0 &&
-            education_data.educations.map((value, index) => (
-              <div>
-                <Text style={styles.header}>{value.college}</Text>
-                <Text style={styles.text}>{value.qualification}</Text>
-                <Text
-                  style={styles.text}
-                >{`(${value.year[0]} - ${value.year[1]})`}</Text>
-                <Text style={styles.text}>{value.description}</Text>
-              </div>
-            ))}
+          <View style={styles.container}>
+            <Text style={{width: '100%',margin: 10, fontSize: 12}}>{education_data.college}</Text>
+            <Text style={styles.text}>{education_data.qualification} - </Text>
+            <Text
+              style={styles.text}
+            >{`(${education_data.year[0]} - ${education_data.year[1]})`}</Text>
+            <Text style={styles.text}>{education_data.description}</Text>
+            {education_data.educations.length > 0 &&
+              education_data.educations.map((value, index) => (
+                <div>
+                  <Text style={{width: '100%',margin: 10, fontSize: 12}}>{value.college}</Text>
+                  <Text style={styles.text}>{value.qualification} - </Text>
+                  <Text
+                    style={styles.text}
+                  >{`(${value.year[0]} - ${value.year[1]})`}</Text>
+                  <Text style={styles.text}>{value.description}</Text>
+                </div>
+              ))}
+          </View>
         </View>
       </Page>
     </Document>

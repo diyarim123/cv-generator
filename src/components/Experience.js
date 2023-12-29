@@ -101,9 +101,12 @@ export default function Experience({ onNext, onPrev }) {
           >
             <RangePicker
               value={values.duration}
-              onChange={(dates) => setFieldValue("duration", dates)}
+              onChange={(dates) => {
+                setFieldValue("duration", dates);
+              }}
               onBlur={handleBlur}
               status={errors.duration && touched.duration ? "error" : ""}
+              format="DD MMM YYYY"
             />
           </Form.Item>
         </div>

@@ -101,9 +101,12 @@ export default function Education({ onNext, onPrev }) {
           >
             <RangePicker
               value={values.year}
-              onChange={(dates) => setFieldValue("year", dates)}
+              onChange={(dates) => {
+                setFieldValue("year", dates)
+              }}
               onBlur={handleBlur}
               status={errors.year && touched.year ? "error" : ""}
+              format="DD MMM YYYY"
             />
           </Form.Item>
         </div>
@@ -174,6 +177,7 @@ export default function Education({ onNext, onPrev }) {
                             dates
                           );
                         }}
+                        format="DD MMM YYYY"
                       />
                     </Form.Item>
                   </div>

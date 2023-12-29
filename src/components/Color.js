@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux"
 import { setColorData } from "../redux/containerSlice";
 
 export default function Color({onNext, onPrev}) {
-  const [value, setValue] = useState("#1677ff");
+  const [value, setValue] = useState("#000");
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
@@ -24,6 +24,7 @@ export default function Color({onNext, onPrev}) {
         <Form.Item label={<p className="text-2xl text-black">Choose a CV color</p>} name='color'>
           <ColorPicker
             value={value}
+            defaultValue="#000"
             onChangeComplete={(color) => {
               setValue(color.toHexString());
             }}
