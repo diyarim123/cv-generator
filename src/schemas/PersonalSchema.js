@@ -16,7 +16,7 @@ const basicSchema = yup.object().shape({
   position: yup.string().required("Required"),
   skill: yup.string(),
   skills: yup.array(),
-  photo: yup.string()
+  photo: yup.string().required()
 });
 
 export default basicSchema;

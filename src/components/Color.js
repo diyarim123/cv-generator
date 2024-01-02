@@ -21,10 +21,10 @@ export default function Color({onNext, onPrev}) {
       <Form layout="vertical" onFinish={onFinish}>
 
         <div className="flex items-center justify-center gap-2 text-center h-[20rem]">
-        <Form.Item label={<p className="text-2xl text-black">Choose a CV color</p>} name='color'>
+        <Form.Item label={<p className="text-2xl text-black">Choose the text color</p>} name='color'>
           <ColorPicker
             value={value}
-            defaultValue="#000"
+            defaultValue="black"
             onChangeComplete={(color) => {
               setValue(color.toHexString());
             }}
